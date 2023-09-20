@@ -1,0 +1,21 @@
+openapi: 3.0.3
+info:
+  title: Amazing product service
+  description: Amazing product service handled by Spring data
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8080'
+    description: Development server
+paths:
+  /products/{id}:
+    parameters:
+      -name: id
+      in: path
+      description: Id of the product
+      required: true
+      schema:
+        type: int
+        example: 3
+
+
+  
