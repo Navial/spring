@@ -1,18 +1,27 @@
 package amazing.productservice;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
+@AllArgsConstructor
 public class ProductController {
     private ProductService ps;
-    public ProductController(ProductService ps){
-        this.ps = ps;
-    }
     @GetMapping("/products")
     public Iterable<Product> getAllProducts(){
         return ps.getAllProducts();
+    }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<Product> getOneById(@PathVariable int id){
+        Optional<Product> product = ps.getOneById(id);
+        return product
+                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/products")

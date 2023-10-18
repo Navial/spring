@@ -3,7 +3,6 @@ package amazing.productservice;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ProductService {
@@ -12,7 +11,10 @@ public class ProductService {
     public ProductService(ProductRepository pr){
         this.pr = pr;
     }
-    private final ConcurrentHashMap<Integer, Product> products = new ConcurrentHashMap<>();
+
+    public Optional<Product> getOneById(int id){
+        return pr.findById(id);
+    }
 
     public Iterable<Product> getAllProducts(){
         return pr.findAll();

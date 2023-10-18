@@ -11,12 +11,9 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "wishlists")
-public class Wishlist {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Product {
     private int id;
-    private String pseudo;
-    private int productId;
-
+    private String name;
+    private String category;
+    private double price;
 }
